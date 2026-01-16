@@ -1,0 +1,718 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>S.S. Engineering Services</title>
+    <script src="https://cdn.tailwindcss.com"></script>
+    <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;500;600;700&display=swap" rel="stylesheet">
+    <style>
+        body {
+            box-sizing: border-box;
+            font-family: 'Poppins', sans-serif;
+        }
+        
+        .main-background {
+            background: linear-gradient(135deg, rgba(30, 58, 138, 0.95), rgba(55, 65, 81, 0.9)), 
+                        url('data:image/svg+xml,<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 1200 600"><defs><pattern id="grid" width="40" height="40" patternUnits="userSpaceOnUse"><path d="M 40 0 L 0 0 0 40" fill="none" stroke="%23475569" stroke-width="1" opacity="0.1"/></pattern></defs><rect fill="%23374151" width="1200" height="600"/><rect width="1200" height="600" fill="url(%23grid)"/><g fill="%23475569" opacity="0.2"><circle cx="150" cy="100" r="60"><animate attributeName="r" values="60;80;60" dur="4s" repeatCount="indefinite"/></circle><circle cx="900" cy="150" r="40"><animate attributeName="r" values="40;60;40" dur="3s" repeatCount="indefinite"/></circle><circle cx="1100" cy="350" r="70"><animate attributeName="r" values="70;90;70" dur="5s" repeatCount="indefinite"/></circle><rect x="250" y="250" width="180" height="120" rx="8"><animateTransform attributeName="transform" type="rotate" values="0 340 310;5 340 310;0 340 310" dur="6s" repeatCount="indefinite"/></rect><rect x="650" y="80" width="120" height="180" rx="6"><animateTransform attributeName="transform" type="rotate" values="0 710 170;-3 710 170;0 710 170" dur="4s" repeatCount="indefinite"/></rect><polygon points="500,400 550,350 600,400 550,450" opacity="0.3"><animateTransform attributeName="transform" type="rotate" values="0 550 400;360 550 400" dur="8s" repeatCount="indefinite"/></polygon></g></svg>');
+            background-size: cover;
+            background-position: center;
+            position: relative;
+            overflow: hidden;
+        }
+        
+        .main-background::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: 0;
+            right: 0;
+            bottom: 0;
+            background: radial-gradient(circle at 30% 20%, rgba(59, 130, 246, 0.3) 0%, transparent 50%),
+                        radial-gradient(circle at 70% 80%, rgba(147, 51, 234, 0.2) 0%, transparent 50%);
+            animation: glow 4s ease-in-out infinite alternate;
+        }
+        
+        @keyframes glow {
+            0% { opacity: 0.5; }
+            100% { opacity: 0.8; }
+        }
+        
+        .main-content {
+            position: relative;
+            z-index: 10;
+        }
+        
+        .moving-shapes {
+            position: absolute;
+            top: 0;
+            left: 0;
+            right: 0;
+            bottom: 0;
+            overflow: hidden;
+            z-index: 1;
+        }
+        
+        .moving-shape {
+            position: absolute;
+            opacity: 0.1;
+            animation: move 6s ease-in-out infinite;
+        }
+        
+        .moving-shape:nth-child(1) { top: 20%; left: 10%; animation-delay: 0s; }
+        .moving-shape:nth-child(2) { top: 60%; right: 15%; animation-delay: 2s; }
+        .moving-shape:nth-child(3) { bottom: 30%; left: 20%; animation-delay: 4s; }
+        .moving-shape:nth-child(4) { top: 40%; right: 30%; animation-delay: 1s; }
+        
+        @keyframes move {
+            0%, 100% { transform: translateY(0px) rotate(0deg); }
+            50% { transform: translateY(-20px) rotate(5deg); }
+        }
+        
+        .big-title {
+            background: linear-gradient(135deg, #ffffff 0%, #e2e8f0 100%);
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+            background-clip: text;
+            animation: slideUp 1s ease-out;
+        }
+        
+        .subtitle {
+            animation: slideUp 1s ease-out 0.3s both;
+        }
+        
+        .button-group {
+            animation: slideUp 1s ease-out 0.6s both;
+        }
+        
+        @keyframes slideUp {
+            from {
+                opacity: 0;
+                transform: translateY(30px);
+            }
+            to {
+                opacity: 1;
+                transform: translateY(0);
+            }
+        }
+        
+        .card:hover {
+            transform: translateY(-5px);
+            transition: all 0.3s ease;
+        }
+        
+        .menu-link:hover {
+            color: #3b82f6;
+            transition: color 0.3s ease;
+        }
+    </style>
+</head>
+<body class="bg-white">
+    <!-- Navigation -->
+    <nav class="bg-white shadow-lg fixed w-full top-0 z-50 border-b border-gray-100">
+        <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+            <div class="flex justify-between items-center h-18">
+                <div class="flex items-center">
+                    <div class="flex-shrink-0">
+                        <div class="flex items-center">
+                            <div class="w-12 h-12 bg-gradient-to-br from-blue-600 to-blue-700 rounded-xl flex items-center justify-center mr-4 shadow-lg">
+                                <img src="images/im1.png">
+                            </div>
+                            <div>
+                                <span class="text-xl font-bold text-gray-800 block leading-tight">S.S. ENGINEERING</span>
+                                <span class="text-sm text-blue-600 font-medium">SERVICES</span>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                <div class="hidden md:block">
+                    <div class="ml-10 flex items-center space-x-1">
+                        <a href="#home" class="menu-link text-gray-700 hover:text-blue-600 hover:bg-blue-50 px-4 py-2 rounded-lg text-sm font-medium transition-all duration-200">Home</a>
+                        <a href="#about" class="menu-link text-gray-700 hover:text-blue-600 hover:bg-blue-50 px-4 py-2 rounded-lg text-sm font-medium transition-all duration-200">About Us</a>
+                        <a href="#services" class="menu-link text-gray-700 hover:text-blue-600 hover:bg-blue-50 px-4 py-2 rounded-lg text-sm font-medium transition-all duration-200">Services</a>
+                        <a href="#projects" class="menu-link text-gray-700 hover:text-blue-600 hover:bg-blue-50 px-4 py-2 rounded-lg text-sm font-medium transition-all duration-200">Projects</a>
+                        <a href="#contact" class="bg-gradient-to-r from-blue-600 to-blue-700 hover:from-blue-700 hover:to-blue-800 text-white px-6 py-2 rounded-lg text-sm font-medium transition-all duration-200 shadow-md hover:shadow-lg transform hover:scale-105">Contact</a>
+                    </div>
+                </div>
+                <div class="md:hidden">
+                    <button id="mobile-menu-btn" class="text-gray-700 hover:text-blue-600 focus:outline-none p-2 rounded-lg hover:bg-gray-100 transition-colors duration-200">
+                        <svg class="w-6 h-6" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M4 6h16M4 12h16M4 18h16"></path>
+                        </svg>
+                    </button>
+                </div>
+            </div>
+        </div>
+        <!-- Mobile menu -->
+        <div id="mobile-menu" class="md:hidden hidden bg-white border-t border-gray-100">
+            <div class="px-4 pt-2 pb-3 space-y-1">
+                <a href="#home" class="block px-4 py-3 text-gray-700 hover:text-blue-600 hover:bg-blue-50 rounded-lg transition-all duration-200">Home</a>
+                <a href="#about" class="block px-4 py-3 text-gray-700 hover:text-blue-600 hover:bg-blue-50 rounded-lg transition-all duration-200">About Us</a>
+                <a href="#services" class="block px-4 py-3 text-gray-700 hover:text-blue-600 hover:bg-blue-50 rounded-lg transition-all duration-200">Services</a>
+                <a href="#projects" class="block px-4 py-3 text-gray-700 hover:text-blue-600 hover:bg-blue-50 rounded-lg transition-all duration-200">Projects</a>
+                <a href="#contact" class="block px-4 py-3 bg-gradient-to-r from-blue-600 to-blue-700 text-white rounded-lg font-medium text-center">Contact</a>
+            </div>
+        </div>
+    </nav>
+
+    <!-- Hero Section -->
+    <section id="home" class="main-background min-h-screen flex items-center justify-center text-white relative">
+        <!-- Floating Elements -->
+        <div class="moving-shapes">
+            <div class="moving-shape">
+                <svg class="w-16 h-16 text-white" fill="currentColor" viewBox="0 0 24 24">
+                    <path d="M12 2l3.09 6.26L22 9.27l-5 4.87 1.18 6.88L12 17.77l-6.18 3.25L7 14.14 2 9.27l6.91-1.01L12 2z"/>
+                </svg>
+            </div>
+            <div class="moving-shape">
+                <svg class="w-20 h-20 text-white" fill="currentColor" viewBox="0 0 24 24">
+                    <path d="M19 3H5c-1.1 0-2 .9-2 2v14c0 1.1.9 2 2 2h14c1.1 0 2-.9 2-2V5c0-1.1-.9-2-2-2zm-5 14H7v-2h7v2zm3-4H7v-2h10v2zm0-4H7V7h10v2z"/>
+                </svg>
+            </div>
+            <div class="moving-shape">
+                <svg class="w-12 h-12 text-white" fill="currentColor" viewBox="0 0 24 24">
+                    <path d="M12 2C6.48 2 2 6.48 2 12s4.48 10 10 10 10-4.48 10-10S17.52 2 12 2zm-2 15l-5-5 1.41-1.41L10 14.17l7.59-7.59L19 8l-9 9z"/>
+                </svg>
+            </div>
+            <div class="moving-shape">
+                <svg class="w-14 h-14 text-white" fill="currentColor" viewBox="0 0 24 24">
+                    <path d="M9 11H7v6h2v-6zm4 0h-2v6h2v-6zm4 0h-2v6h2v-6zm2.5-9H19v2h-1.5v16.5c0 1.1-.9 2-2 2h-11c-1.1 0-2-.9-2-2V4H1V2h3.5c.28 0 .5.22.5.5V4h9V2.5c0-.28.22-.5.5-.5z"/>
+                </svg>
+            </div>
+        </div>
+        
+        <div class="main-content max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 text-center">
+            <div class="mb-8">
+                <div class="inline-flex items-center bg-white/10 backdrop-blur-sm rounded-full px-6 py-2 mb-6 border border-white/20">
+                    <svg class="w-5 h-5 text-blue-300 mr-2" fill="currentColor" viewBox="0 0 24 24">
+                        <path d="M12 2l3.09 6.26L22 9.27l-5 4.87 1.18 6.88L12 17.77l-6.18 3.25L7 14.14 2 9.27l6.91-1.01L12 2z"/>
+                    </svg>
+                    <span class="text-sm font-medium text-white">Trusted Industrial Engineering Partner</span>
+                </div>
+            </div>
+            
+            <h1 class="big-title text-4xl md:text-7xl font-bold mb-6 leading-tight">
+                WELCOME TO<br>
+                <span class="text-blue-300"> S.S. ENGINEERING SERVICES</span>
+            </h1>
+            
+            <p class="subtitle text-xl md:text-2xl mb-12 max-w-4xl mx-auto font-light leading-relaxed text-gray-100">
+                Transform your industrial operations with cutting-edge engineering expertise, 
+                comprehensive maintenance services, and innovative solutions designed for excellence
+            </p>
+            
+            <div class="button-group flex flex-col sm:flex-row gap-4 justify-center items-center">
+                <a href="#services" class="group bg-gradient-to-r from-blue-600 to-blue-700 hover:from-blue-700 hover:to-blue-800 text-white px-10 py-4 rounded-xl font-semibold transition-all duration-300 transform hover:scale-105 shadow-lg hover:shadow-xl flex items-center">
+                    <span>Explore Our Services</span>
+                    <svg class="w-5 h-5 ml-2 group-hover:translate-x-1 transition-transform duration-300" fill="currentColor" viewBox="0 0 24 24">
+                        <path d="M12 4l-1.41 1.41L16.17 11H4v2h12.17l-5.58 5.59L12 20l8-8z"/>
+                    </svg>
+                </a>
+                <a href="#contact" class="group border-2 border-white/50 text-white hover:bg-white hover:text-blue-600 px-10 py-4 rounded-xl font-semibold transition-all duration-300 transform hover:scale-105 backdrop-blur-sm bg-white/5 flex items-center">
+                    <span>Get Free Quote</span>
+                    <svg class="w-5 h-5 ml-2 group-hover:translate-x-1 transition-transform duration-300" fill="currentColor" viewBox="0 0 24 24">
+                        <path d="M20 4H4c-1.1 0-1.99.9-1.99 2L2 18c0 1.1.9 2 2 2h16c1.1 0 2-.9 2-2V6c0-1.1-.9-2-2-2zm0 4l-8 5-8-5V6l8 5 8-5v2z"/>
+                    </svg>
+                </a>
+            </div>
+            
+            <!-- Stats Section -->
+            <div class="mt-16 grid grid-cols-2 md:grid-cols-4 gap-8 max-w-4xl mx-auto">
+                <div class="text-center">
+                    <div class="text-3xl md:text-4xl font-bold text-blue-300 mb-2">25+</div>
+                    <div class="text-sm text-gray-300">Years Experience</div>
+                </div>
+                <div class="text-center">
+                    <div class="text-3xl md:text-4xl font-bold text-blue-300 mb-2">100+</div>
+                    <div class="text-sm text-gray-300">Projects Completed</div>
+                </div>
+                <div class="text-center">
+                    <div class="text-3xl md:text-4xl font-bold text-blue-300 mb-2">24/7</div>
+                    <div class="text-sm text-gray-300">Support Available</div>
+                </div>
+                <div class="text-center">
+                    <div class="text-3xl md:text-4xl font-bold text-blue-300 mb-2">100%</div>
+                    <div class="text-sm text-gray-300">Client Satisfaction</div>
+                </div>
+            </div>
+        </div>
+        
+        <!-- Scroll Indicator -->
+        <div class="absolute bottom-8 left-1/2 transform -translate-x-1/2 animate-bounce">
+            <svg class="w-6 h-6 text-white/70" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M19 14l-7 7m0 0l-7-7m7 7V3"/>
+            </svg>
+        </div>
+    </section>
+
+    <!-- About Us Section -->
+    <section id="about" class="py-20 bg-gray-50">
+        <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+            <div class="text-center mb-16">
+                <h2 class="text-3xl md:text-4xl font-bold text-gray-800 mb-4">About SS Engineering Services</h2>
+                <div class="w-24 h-1 bg-blue-600 mx-auto"></div>
+            </div>
+            <div class="grid md:grid-cols-2 gap-12 items-center">
+                <div>
+                    <h3 class="text-2xl font-semibold text-gray-800 mb-6">Company Introduction</h3>
+                    <div class="bg-white p-6 rounded-lg shadow-sm border-l-4 border-blue-600 mb-6">
+                        <p class="text-gray-600 leading-relaxed">
+                           S.S. Engineering Services is a trusted provider of industrial engineering, maintenance, and fabrication solutions. We deliver reliable, high-quality services designed to enhance efficiency, safety, and                            performance across industries.
+                        </p>
+                    </div>
+                    <h3 class="text-2xl font-semibold text-gray-800 mb-6">Our Mission</h3>
+                    <div class="bg-white p-6 rounded-lg shadow-sm border-l-4 border-gray-400">
+                        <p class="text-gray-600 leading-relaxed">
+                           Our mission is to deliver innovative and reliable engineering solutions that ensure operational excellence, safety, and sustainability. We aim to build long-term partnerships through quality                            workmanship, integrity, and continuous improvement.
+                        </p>
+                    </div>
+                </div>
+                <div class="grid grid-cols-2 gap-6">
+                    <div class="bg-white p-6 rounded-lg shadow-sm text-center">
+                        <div class="w-16 h-16 bg-blue-100 rounded-full flex items-center justify-center mx-auto mb-4">
+                            <svg class="w-8 h-8 text-blue-600" fill="currentColor" viewBox="0 0 24 24">
+                                <path d="M12 2C6.48 2 2 6.48 2 12s4.48 10 10 10 10-4.48 10-10S17.52 2 12 2zm-2 15l-5-5 1.41-1.41L10 14.17l7.59-7.59L19 8l-9 9z"/>
+                            </svg>
+                        </div>
+                        <h4 class="font-semibold text-gray-800 mb-2">Quality Assured</h4>
+                        <p class="text-gray-600 text-sm">Certified processes and standards</p>
+                    </div>
+                    <div class="bg-white p-6 rounded-lg shadow-sm text-center">
+                        <div class="w-16 h-16 bg-blue-100 rounded-full flex items-center justify-center mx-auto mb-4">
+                            <svg class="w-8 h-8 text-blue-600" fill="currentColor" viewBox="0 0 24 24">
+                                <path d="M12 2l3.09 6.26L22 9.27l-5 4.87 1.18 6.88L12 17.77l-6.18 3.25L7 14.14 2 9.27l6.91-1.01L12 2z"/>
+                            </svg>
+                        </div>
+                        <h4 class="font-semibold text-gray-800 mb-2">Expert Team</h4>
+                        <p class="text-gray-600 text-sm">Experienced professionals</p>
+                    </div>
+                    <div class="bg-white p-6 rounded-lg shadow-sm text-center">
+                        <div class="w-16 h-16 bg-blue-100 rounded-full flex items-center justify-center mx-auto mb-4">
+                            <svg class="w-8 h-8 text-blue-600" fill="currentColor" viewBox="0 0 24 24">
+                                <path d="M12 2C6.48 2 2 6.48 2 12s4.48 10 10 10 10-4.48 10-10S17.52 2 12 2zm0 18c-4.41 0-8-3.59-8-8s3.59-8 8-8 8 3.59 8 8-3.59 8-8 8zm.31-8.86c-1.77-.45-2.34-.94-2.34-1.67 0-.84.79-1.43 2.1-1.43 1.38 0 1.9.66 1.94 1.64h1.71c-.05-1.34-.87-2.57-2.49-2.97V5H10.9v1.69c-1.51.32-2.72 1.3-2.72 2.81 0 1.79 1.49 2.69 3.66 3.21 1.95.46 2.34 1.15 2.34 1.87 0 .53-.39 1.39-2.1 1.39-1.6 0-2.23-.72-2.32-1.64H8.04c.1 1.7 1.36 2.66 2.86 2.97V19h2.34v-1.67c1.52-.29 2.72-1.16 2.73-2.77-.01-2.2-1.9-2.96-3.66-3.42z"/>
+                            </svg>
+                        </div>
+                        <h4 class="font-semibold text-gray-800 mb-2">Cost Effective</h4>
+                        <p class="text-gray-600 text-sm">Competitive pricing solutions</p>
+                    </div>
+                    <div class="bg-white p-6 rounded-lg shadow-sm text-center">
+                        <div class="w-16 h-16 bg-blue-100 rounded-full flex items-center justify-center mx-auto mb-4">
+                            <svg class="w-8 h-8 text-blue-600" fill="currentColor" viewBox="0 0 24 24">
+                                <path d="M12 2C6.48 2 2 6.48 2 12s4.48 10 10 10 10-4.48 10-10S17.52 2 12 2zm-1 17.93c-3.94-.49-7-3.85-7-7.93 0-.62.08-1.21.21-1.79L9 15v1c0 1.1.9 2 2 2v1.93zm6.9-2.54c-.26-.81-1-1.39-1.9-1.39h-1v-3c0-.55-.45-1-1-1H8v-2h2c.55 0 1-.45 1-1V7h2c1.1 0 2-.9 2-2v-.41c2.93 1.19 5 4.06 5 7.41 0 2.08-.8 3.97-2.1 5.39z"/>
+                            </svg>
+                        </div>
+                        <h4 class="font-semibold text-gray-800 mb-2">24/7 Support</h4>
+                        <p class="text-gray-600 text-sm">Round-the-clock assistance</p>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+<!-- Services Section -->
+<section id="services" class="py-20 bg-white">
+    <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+        <div class="text-center mb-16">
+            <h2 class="text-3xl md:text-4xl font-bold text-gray-800 mb-4">Our Services</h2>
+            <div class="w-24 h-1 bg-blue-600 mx-auto mb-6"></div>
+            <p class="text-gray-600 max-w-2xl mx-auto">
+                Comprehensive industrial engineering solutions tailored to your business needs
+            </p>
+        </div>
+        <div class="grid md:grid-cols-2 lg:grid-cols-3 gap-8">
+
+            <!-- Service 1 -->
+            <div class="card bg-white rounded-lg shadow-lg border border-gray-100 hover:shadow-xl overflow-hidden">
+                <div class="h-48 bg-gray-100 border-b-2 border-dashed border-gray-300 overflow-hidden">
+                    <img src="images/im13.png" alt="Manufacture and Repair of Anti Smog Gun" class="w-full h-90object-cover">
+                </div>
+                <div class="p-8">
+                    <h3 class="text-xl font-semibold text-gray-800 mb-4">Manufacture and Repair of Anti Smog Gun</h3>
+                    <p class="text-gray-600 mb-4">
+                        We specialize in producing and repairing advanced anti-smog guns to control air pollution effectively.
+                    </p>
+                    <ul class="text-gray-600 text-sm space-y-2">
+                        <li>• Efficient reduction of particulate matter in industrial zones</li>
+                        <li>• Customizable designs to suit different sites</li>
+                        <li>• Reliable performance with minimal maintenance</li>
+                    </ul>
+                </div>
+            </div>
+
+            <!-- Service 2 -->
+            <div class="card bg-white rounded-lg shadow-lg border border-gray-100 hover:shadow-xl overflow-hidden">
+                <div class="h-48 bg-gray-100 border-b-2 border-dashed border-gray-300 overflow-hidden">
+                    <img src="images/im16.jpeg" alt="Comprehensive Operation and Maintenance" class="w-full h-full object-cover">
+                </div>
+                <div class="p-8">
+                    <h3 class="text-xl font-semibold text-gray-800 mb-4">Comprehensive Operation and Maintenance</h3>
+                    <p class="text-gray-600 mb-4">
+                        Our O&M services ensure your machinery runs safely, efficiently, and without interruption.
+                    </p>
+                    <ul class="text-gray-600 text-sm space-y-2">
+                        <li>• Regular preventive maintenance for longevity</li>
+                        <li>• Skilled technicians for timely troubleshooting</li>
+                        <li>• Reduced operational downtime</li>
+                    </ul>
+                </div>
+            </div>
+
+            <!-- Service 3 -->
+            <div class="card bg-white rounded-lg shadow-lg border border-gray-100 hover:shadow-xl overflow-hidden">
+                <div class="h-48 bg-gray-100 border-b-2 border-dashed border-gray-300 overflow-hidden">
+                    <img src="images/im14.jpeg" alt="Repairing and Servicing of Super Sucker Machine" class="w-full h-full object-cover">
+                </div>
+                <div class="p-8">
+                    <h3 class="text-xl font-semibold text-gray-800 mb-4">Repairing and Servicing of Super Sucker Machine</h3>
+                    <p class="text-gray-600 mb-4">
+                        We handle all types of maintenance for super sucker machines, ensuring optimal suction efficiency.
+                    </p>
+                    <ul class="text-gray-600 text-sm space-y-2">
+                        <li>• Thorough inspection and repair of critical components</li>
+                        <li>• Enhanced machine performance and reliability</li>
+                        <li>• Use of genuine parts for durability</li>
+                    </ul>
+                </div>
+            </div>
+
+            <!-- Service 4 -->
+            <div class="card bg-white rounded-lg shadow-lg border border-gray-100 hover:shadow-xl overflow-hidden">
+                <div class="h-48 bg-gray-100 border-b-2 border-dashed border-gray-300 overflow-hidden">
+                    <img src="images/im18.jpeg" alt="Repairing and Servicing of Road Sweeper Machine and Suction & Jetting Machine" class="w-full h-full object-cover">
+                </div>
+                <div class="p-8">
+                    <h3 class="text-xl font-semibold text-gray-800 mb-4">Repairing and Servicing of Road Sweeper Machine & Suction & Jetting Machine</h3>
+                    <p class="text-gray-600 mb-4">
+                        Keep your cleaning and suction operations seamless with our expert servicing.
+                    </p>
+                    <ul class="text-gray-600 text-sm space-y-2">
+                        <li>• Comprehensive repair of mechanical and hydraulic systems</li>
+                        <li>• Improved efficiency and operational lifespan</li>
+                        <li>• Minimized operational disruptions</li>
+                    </ul>
+                </div>
+            </div>
+
+            <!-- Service 5 -->
+            <div class="card bg-white rounded-lg shadow-lg border border-gray-100 hover:shadow-xl overflow-hidden">
+                <div class="h-48 bg-gray-100 border-b-2 border-dashed border-gray-300 overflow-hidden">
+                    <img src="images/im19.jpeg" alt="Skylift Machine" class="w-full h-full object-cover">
+                </div>
+                <div class="p-8">
+                    <h3 class="text-xl font-semibold text-gray-800 mb-4">Repairing and Servicing of Skylift</h3>
+                    <p class="text-gray-600 mb-4">
+                        Ensure safe and uninterrupted lifting operations with our professional skylift servicing solutions.
+                    </p>
+                    <ul class="text-gray-600 text-sm space-y-2">
+                        <li>• Complete inspection and repair of hydraulic, electrical, and mechanical systems.</li>
+                        <li>• Enhanced safety, performance, and equipment lifespan.</li>
+                        <li>• Reduced downtime and reliable on-site support.</li>
+                    </ul>
+                </div>
+            </div>
+
+            <!-- Service 6 -->
+            <div class="card bg-white rounded-lg shadow-lg border border-gray-100 hover:shadow-xl overflow-hidden">
+                <div class="h-48 bg-gray-100 border-b-2 border-gray-300 overflow-hidden">
+                    <img src="images/im17.jpeg" alt="Spare Parts" class="w-full h-full object-cover">
+                </div>
+                <div class="p-8">
+                    <h3 class="text-xl font-semibold text-gray-800 mb-4">Spare Parts</h3>
+                    <p class="text-gray-600 mb-4">
+                        We provide genuine spare parts for all machinery to ensure long-lasting performance.
+                    </p>
+                    <ul class="text-gray-600 text-sm space-y-2">
+                        <li>• Wide range of readily available parts</li>
+                        <li>• High-quality and durable components</li>
+                        <li>• Compatibility assurance for all machines</li>
+                    </ul>
+                </div>
+            </div>
+
+        </div>
+    </div>
+</section>
+      
+<!-- Projects Section -->
+<section id="projects" class="py-20 bg-gray-50">
+    <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+        <div class="text-center mb-16">
+            <h2 class="text-3xl md:text-4xl font-bold text-gray-800 mb-4">Our Projects & Clients</h2>
+            <div class="w-24 h-1 bg-blue-600 mx-auto mb-6"></div>
+            <p class="text-gray-600 max-w-2xl mx-auto">
+                Trusted by leading industrial companies for reliable engineering solutions
+            </p>
+        </div>
+        
+        <!-- Project Showcase -->
+        <div class="grid md:grid-cols-2 gap-8 mb-16">
+            <div class="bg-white rounded-lg shadow-lg overflow-hidden">
+                <!-- Project Image -->
+                <div class="h-64 bg-gray-100 border-2 border-dashed border-gray-300 overflow-hidden">
+                    <img src="images/im6.jpg" alt="Anti Smog Gun Project" class="w-full h-full object-cover">
+                </div>
+                <div class="p-6">
+                    <h3 class="text-xl font-semibold text-gray-800 mb-3">Anti Smog Gun</h3>
+                    <p class="text-gray-600 mb-4">
+                        Designed and deployed advanced Anti-Smog Gun systems to control air pollution by spraying fine water mist that binds dust and particulate matter, significantly improving air quality at industrial and construction sites.
+                    </p>
+                    <div class="flex items-center text-sm text-gray-500">
+                        <svg class="w-4 h-4 mr-2" fill="currentColor" viewBox="0 0 24 24">
+                            <path d="M12 2C6.48 2 2 6.48 2 12s4.48 10 10 10 10-4.48 10-10S17.52 2 12 2zm-2 15l-5-5 1.41-1.41L10 14.17l7.59-7.59L19 8l-9 9z"/>
+                        </svg>
+                        Completed Successfully
+                    </div>
+                </div>
+            </div>
+
+            <div class="bg-white rounded-lg shadow-lg overflow-hidden">
+                <!-- Project Image -->
+                <div class="h-64 bg-gray-100 border-2 border-dashed border-gray-300 overflow-hidden">
+                    <img src="images/im10.webp" alt="Sewer Suction cum Jetting Machine Automation" class="w-full h-full object-cover">
+                </div>
+                <div class="p-6">
+                    <h3 class="text-xl font-semibold text-gray-800 mb-3">Automation for Sewer Suction cum Jetting Machine</h3>
+                    <p class="text-gray-600 mb-4">
+                        Developed an automated control system for sewer suction-cum-jetting machines to enhance efficiency, operator safety, and precision in sewer cleaning operations through real-time monitoring and simplified controls.
+                    </p>
+                    <div class="flex items-center text-sm text-gray-500">
+                        <svg class="w-4 h-4 mr-2" fill="currentColor" viewBox="0 0 24 24">
+                            <path d="M12 2C6.48 2 2 6.48 2 12s4.48 10 10 10 10-4.48 10-10S17.52 2 12 2zm-2 15l-5-5 1.41-1.41L10 14.17l7.59-7.59L19 8l-9 9z"/>
+                        </svg>
+                        Completed Successfully
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</section>
+
+
+            <div class="bg-white rounded-lg shadow-lg overflow-hidden">
+
+            <!-- Client Logos/Names -->
+            <div class="bg-white rounded-lg shadow-lg p-8">
+                <h3 class="text-2xl font-semibold text-gray-800 text-center mb-8">Trusted by Industry Leaders</h3>
+                <div class="grid grid-cols-2 md:grid-cols-4 gap-8 items-center">
+                    <div class="text-center">
+                        <div class="w-25 h-25 bg-White-100 rounded-lg flex items-center justify-center mx-auto mb-3">
+                            <img src="images/im2.png">
+                        </div>
+                        <p class="text-gray-600 text-sm">Muncipal Corporation of Delhi</p>
+                    </div>
+                    <div class="text-center">
+                        <div class="w-25 h-25 bg-white-100 rounded-lg flex items-center justify-center mx-auto mb-3">
+                            <img src="images/im3.png">
+                        </div>
+                        <p class="text-gray-600 text-sm">Delhi Jal Board</p>
+                    </div>
+                    <div class="text-center">
+                        <div class="w-25 h-25 bg-white-100 rounded-lg flex items-center justify-center mx-auto mb-3">
+                            <img src="images/im4.png">
+                        </div>
+                        <p class="text-gray-600 text-sm">Delhi Metro Rail Corporation</p>
+                    </div>
+                    <div class="text-center">
+                        <div class="w-25 h-25 bg-white-100 rounded-lg flex items-center justify-center mx-auto mb-3">
+                            <img src="images/im5.png">
+                        </div>
+                        <p class="text-gray-600 text-sm">Quality Enviro Engineers Limited</p>
+                    </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Contact Section -->
+    <section id="contact" class="py-20 bg-white">
+        <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+            <div class="text-center mb-16">
+                <h2 class="text-3xl md:text-4xl font-bold text-gray-800 mb-4">Contact Us</h2>
+                <div class="w-24 h-1 bg-blue-600 mx-auto mb-6"></div>
+                <p class="text-gray-600 max-w-2xl mx-auto">
+                    Ready to discuss your industrial engineering needs? Get in touch with our expert team
+                </p>
+            </div>
+            
+            <div class="grid lg:grid-cols-2 gap-12">
+                <!-- Contact Form -->
+                <div class="bg-gray-50 p-8 rounded-lg">
+                    <h3 class="text-2xl font-semibold text-gray-800 mb-6">Send us a Message</h3>
+                    <form id="contact-form" class="space-y-6" action="https://formsubmit.co/aryanmasih2701@gmail.com" method="post" >
+                        <div class="grid md:grid-cols-2 gap-6">
+                            <div>
+                                <label class="block text-gray-700 font-medium mb-2">Full Name *</label>
+                                <input type="text" name="name" required class="w-full px-4 py-3 border border-gray-300 rounded-lg focus:ring-2 focus:ring-blue-500 focus:border-transparent">
+                            </div>
+                            <div>
+                                <label class="block text-gray-700 font-medium mb-2">Company</label>
+                                <input type="text" name="company" class="w-full px-4 py-3 border border-gray-300 rounded-lg focus:ring-2 focus:ring-blue-500 focus:border-transparent">
+                            </div>
+                        </div>
+                        <div class="grid md:grid-cols-2 gap-6">
+                            <div>
+                                <label class="block text-gray-700 font-medium mb-2">Email *</label>
+                                <input type="email" name="email" required class="w-full px-4 py-3 border border-gray-300 rounded-lg focus:ring-2 focus:ring-blue-500 focus:border-transparent">
+                            </div>
+                            <div>
+                                <label class="block text-gray-700 font-medium mb-2">Phone</label>
+                                <input type="tel" name="phone" class="w-full px-4 py-3 border border-gray-300 rounded-lg focus:ring-2 focus:ring-blue-500 focus:border-transparent">
+                            </div>
+                        </div>
+                        <div>
+                            <label class="block text-gray-700 font-medium mb-2">Service Required</label>
+                            <select name="service" class="w-full px-4 py-3 border border-gray-300 rounded-lg focus:ring-2 focus:ring-blue-500 focus:border-transparent">
+                                <option>Select a service</option>
+                                <option>Engineering Consultation</option>
+                                <option>Maintenance Services</option>
+                                <option>Project Management</option>
+                                <option>Technical Support</option>
+                                <option>Other</option>
+                            </select>
+                        </div>
+                        <div>
+                            <label class="block text-gray-700 font-medium mb-2">Message *</label>
+                            <textarea name="message" required rows="5" class="w-full px-4 py-3 border border-gray-300 rounded-lg focus:ring-2 focus:ring-blue-500 focus:border-transparent" placeholder="Please describe your project requirements or questions..."></textarea>
+                        </div>
+                        <button type="submit" class="w-full bg-blue-600 hover:bg-blue-700 text-white font-semibold py-3 px-6 rounded-lg transition duration-300">
+                            Send Message
+                        </button>
+                    </form>
+                </div>
+
+                <!-- Contact Information -->
+                <div class="space-y-8">
+                    <div>
+                        <h3 class="text-2xl font-semibold text-gray-800 mb-6">Get in Touch</h3>
+                        <p class="text-gray-600 mb-8">
+                            Our team is ready to assist you with your industrial engineering needs. Contact us through any of the following methods:
+                        </p>
+                    </div>
+
+                    <div class="space-y-6">
+                        <div class="flex items-start">
+                            
+                           
+                        </div>
+
+                        <div class="flex items-start">
+                            <div class="w-12 h-12 bg-blue-100 rounded-lg flex items-center justify-center mr-4 flex-shrink-0">
+                                <svg class="w-6 h-6 text-blue-600" fill="currentColor" viewBox="0 0 24 24">
+                                    <path d="M6.62 10.79c1.44 2.83 3.76 5.14 6.59 6.59l2.2-2.2c.27-.27.67-.36 1.02-.24 1.12.37 2.33.57 3.57.57.55 0 1 .45 1 1V20c0 .55-.45 1-1 1-9.39 0-17-7.61-17-17 0-.55.45-1 1-1h3.5c.55 0 1 .45 1 1 0 1.25.2 2.45.57 3.57.11.35.03.74-.25 1.02l-2.2 2.2z"/>
+                                </svg>
+                            </div>
+                            <div>
+                                <h4 class="font-semibold text-gray-800 mb-2">Phone Number</h4>
+                                <p class="text-gray-600">
+                                    9953781681<br>
+                                    <span class="text-sm text-gray-500">Available 24/7 for emergencies</span>
+                                </p>
+                            </div>
+                        </div>
+
+                        <div class="flex items-start">
+                            <div class="w-12 h-12 bg-blue-100 rounded-lg flex items-center justify-center mr-4 flex-shrink-0">
+                                <svg class="w-6 h-6 text-blue-600" fill="currentColor" viewBox="0 0 24 24">
+                                    <path d="M20 4H4c-1.1 0-1.99.9-1.99 2L2 18c0 1.1.9 2 2 2h16c1.1 0 2-.9 2-2V6c0-1.1-.9-2-2-2zm0 4l-8 5-8-5V6l8 5 8-5v2z"/>
+                                </svg>
+                            </div>
+                            <div>
+                                <h4 class="font-semibold text-gray-800 mb-2">Email Address</h4>
+                                <p class="text-gray-600">
+                                    ssengineeringservices2018@gmail.com<br>
+                                    <span class="text-sm text-gray-500">We respond within 24 hours</span>
+                                </p>
+                            </div>
+                        </div>
+
+                        <div class="flex items-start">
+                            <div class="w-12 h-12 bg-blue-100 rounded-lg flex items-center justify-center mr-4 flex-shrink-0">
+                                <svg class="w-6 h-6 text-blue-600" fill="currentColor" viewBox="0 0 24 24">
+                                    <path d="M12 2C6.48 2 2 6.48 2 12s4.48 10 10 10 10-4.48 10-10S17.52 2 12 2zm-2 15l-5-5 1.41-1.41L10 14.17l7.59-7.59L19 8l-9 9z"/>
+                                </svg>
+                            </div>
+                            <div>
+                                <h4 class="font-semibold text-gray-800 mb-2">Business Hours</h4>
+                                <p class="text-gray-600">
+                                    Monday - Friday: 8:00 AM - 6:00 PM<br>
+                                    Saturday: 9:00 AM - 2:00 PM<br>
+                                    Sunday: Emergency calls only
+                                </p>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Footer -->
+    <footer class="bg-gray-800 text-white py-12">
+        <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+            <div class="grid md:grid-cols-3 gap-8">
+                <div>
+                    <div class="flex items-center mb-4">
+<div class="w-12 h-12 bg-gradient-to-br from-blue-600 to-blue-700 rounded-xl flex items-center justify-center mr-4 shadow-lg">
+                                <img src="images/im1.png">
+                            </div>
+                        <span class="text-xl font-bold">SS ENGINEERING SERVICES</span>
+                    </div>
+                    <p class="text-gray-300 mb-4">
+                        Professional industrial engineering and maintenance services for reliable, efficient operations.
+                    </p>
+                </div>
+                <div>
+                    <h4 class="text-lg font-semibold mb-4">Quick Links</h4>
+                    <ul class="space-y-2">
+                        <li><a href="#home" class="text-gray-300 hover:text-white transition duration-300">Home</a></li>
+                        <li><a href="#about" class="text-gray-300 hover:text-white transition duration-300">About Us</a></li>
+                        <li><a href="#services" class="text-gray-300 hover:text-white transition duration-300">Services</a></li>
+                        <li><a href="#projects" class="text-gray-300 hover:text-white transition duration-300">Projects</a></li>
+                        <li><a href="#contact" class="text-gray-300 hover:text-white transition duration-300">Contact</a></li>
+                    </ul>
+                </div>
+                <div>
+                    <h4 class="text-lg font-semibold mb-4">Contact Info</h4>
+                    <div class="space-y-2 text-gray-300">
+                        <p>Mobile No. :- 9953781681</p>
+                        <p>Email Address :- ssengineeringservices2018@gmail.com</p>
+                    </div>
+                </div>
+            </div>
+            <div class="border-t border-gray-700 mt-8 pt-8 text-center">
+                <p class="text-gray-300">
+                    © 2018-2025 S.S. Engineering Services. All rights reserved.
+                </p>
+            </div>
+        </div>
+    </footer>
+
+    <script>
+        // Mobile menu toggle
+        const mobileMenuBtn = document.getElementById('mobile-menu-btn');
+        const mobileMenu = document.getElementById('mobile-menu');
+        
+        mobileMenuBtn.addEventListener('click', () => {
+            mobileMenu.classList.toggle('hidden');
+        });
+
+        // Smooth scrolling for navigation links
+        document.querySelectorAll('a[href^="#"]').forEach(anchor => {
+            anchor.addEventListener('click', function (e) {
+                e.preventDefault();
+                const target = document.querySelector(this.getAttribute('href'));
+                if (target) {
+                    target.scrollIntoView({
+                        behavior: 'smooth',
+                        block: 'start'
+                    });
+                    // Close mobile menu if open
+                    mobileMenu.classList.add('hidden');
+                }
+            });
+        });
+        // Navigation is always white - no scroll effect needed
+    </script>
+<script>(function(){function c(){var b=a.contentDocument||a.contentWindow.document;if(b){var d=b.createElement('script');d.innerHTML="window.__CF$cv$params={r:'98a6d7ab916a59a6',t:'MTc1OTc3MTM2My4wMDAwMDA='};var a=document.createElement('script');a.nonce='';a.src='/cdn-cgi/challenge-platform/scripts/jsd/main.js';document.getElementsByTagName('head')[0].appendChild(a);";b.getElementsByTagName('head')[0].appendChild(d)}}if(document.body){var a=document.createElement('iframe');a.height=1;a.width=1;a.style.position='absolute';a.style.top=0;a.style.left=0;a.style.border='none';a.style.visibility='hidden';document.body.appendChild(a);if('loading'!==document.readyState)c();else if(window.addEventListener)document.addEventListener('DOMContentLoaded',c);else{var e=document.onreadystatechange||function(){};document.onreadystatechange=function(b){e(b);'loading'!==document.readyState&&(document.onreadystatechange=e,c())}}}})();</script></body>
+</html>
